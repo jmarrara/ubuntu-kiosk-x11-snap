@@ -9,8 +9,8 @@ grade: devel
 
 apps:
   jm-kiosk-x11-snap-sample1:
-#    daemon: simple
-#    restart-condition: always
+    daemon: simple
+    restart-condition: always
     command-chain:
       - env-setup
     command: usr/local/bin/x11_kiosk_launch glxgears
