@@ -1,0 +1,44 @@
+name: jm-kiosk-x11-snap-sample1
+version: '0.1'
+summary: example (glxgears) X11 kiosk, using mir-kiosk-x11
+description: |
+  example (glxgears) X11 kiosk, using mir-kiosk-x11
+base: core20
+confinement: strict
+grade: devel
+
+apps:
+  jm-kiosk-x11-snap-sample1:
+#    daemon: simple
+#    restart-condition: always
+    command-chain:
+      - env-setup
+    command: usr/local/bin/x11_kiosk_launch glxgears
+    plugs:
+      - opengl         # For Mir
+      - wayland        # For Mir
+      - network-bind   # For Mir (to serve X11)
+
+architectures:
+  - build-on: amd64
+  - build-on: arm64
+  - build-on: armhf
+
+parts:
+  glxgears:
+    plugin: nil
+    stage-packages:
+      - mesa-utils
+    stage-snaps: [mir-kiosk-x11]
+
+layout:
+  /usr/share/X11:
+    bind: $SNAP/usr/share/X11
+  /usr/bin/xkbcomp:
+    symlink: $SNAP/usr/bin/xkbcomp
+  /usr/share/icons:
+    bind: $SNAP/usr/share/icons
+  /usr/share/fonts:
+    bind: $SNAP/usr/share/fonts
+  /etc/fonts:
+    bind: $SNAP/etc/fonts
