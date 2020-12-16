@@ -1,5 +1,5 @@
 name: jm-kiosk-x11-snap-sample1
-version: '0.1'
+version: '0.2'
 summary: example (glxgears) X11 kiosk, using mir-kiosk-x11
 description: |
   example (glxgears) X11 kiosk, using mir-kiosk-x11
